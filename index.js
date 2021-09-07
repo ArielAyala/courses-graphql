@@ -26,7 +26,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 // graphql(schema, '{hello}', resolvers).then(data => {
 //     console.log(data)
 // })
-
+console.log(resolvers)
 app.use('/api', graphqlHTTP({
     schema: schema,
     rootValue: resolvers,

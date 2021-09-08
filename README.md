@@ -1,7 +1,8 @@
 ## Using variables
+
 ```graphql
-mutation AddPersonToCourse2($course: ID!, $person:ID!){
-  addPeople(courseID: $course, personID: $person){
+mutation AddPersonToCourse2($course: ID!, $person: ID!) {
+  addPeople(courseID: $course, personID: $person) {
     _id
     title
   }
@@ -16,11 +17,11 @@ mutation AddPersonToCourse2($course: ID!, $person:ID!){
 ```
 
 ```graphql
-query GetCourse2($course: ID!){
+query GetCourse2($course: ID!) {
   getCourse(id: $course) {
     _id
     title
-    people{
+    people {
       _id
       name
     }
@@ -29,6 +30,7 @@ query GetCourse2($course: ID!){
 ```
 
 Variables
+
 ```graphql
 {
   "course": "6134f172e6f1b6adfb085b29"
@@ -36,22 +38,22 @@ Variables
 ```
 
 ## Using aliases and fragments
+
 ```graphql
 {
-  AllCourses: getCourses{
+  AllCourses: getCourses {
     ...CourseFields
   }
-  
-  Course1: getCourse(id:"6134f172e6f1b6adfb085b28") {
+
+  Course1: getCourse(id: "6134f172e6f1b6adfb085b28") {
     ...CourseFields
     teacher
   }
-  
-  Course2: getCourse(id:"6134f172e6f1b6adfb085b29"){
+
+  Course2: getCourse(id: "6134f172e6f1b6adfb085b29") {
     ...CourseFields
     topic
   }
-  
 }
 
 fragment CourseFields on Course {
@@ -61,4 +63,28 @@ fragment CourseFields on Course {
 }
 ```
 
+## Directives
 
+```graphql
+query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
+  getPeople {
+    _id
+    name
+    ... on Monitor @include(if: $monitor) {
+      phone
+    }
+    ... on Student @include(if: $avatar) {
+      avatar
+      email
+    }
+  }
+}
+```
+
+```graphql
+{
+  "monitor":false,
+  "avatar":true
+}
+
+```

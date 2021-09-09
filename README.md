@@ -88,3 +88,27 @@ query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
 }
 
 ```
+
+## Unions
+
+```graphql
+{
+  searchItems(keyword: "titulo"){
+    __typename
+    ... on Course {
+      title
+      description
+    }
+    ... on Monitor {
+      name
+      phone
+    }
+    ... on Student {
+      name
+      email
+    }
+  }
+}
+```
+
+

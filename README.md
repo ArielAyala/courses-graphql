@@ -8,7 +8,7 @@ mutation AddPersonToCourse2($course: ID!, $person: ID!) {
   }
 }
 ```
-
+Variables
 ```graphql
 {
   "course": "6134f172e6f1b6adfb085b29",
@@ -28,9 +28,7 @@ query GetCourse2($course: ID!) {
   }
 }
 ```
-
 Variables
-
 ```graphql
 {
   "course": "6134f172e6f1b6adfb085b29"
